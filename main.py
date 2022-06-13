@@ -1,5 +1,6 @@
 #!/user/bin/env
 import json
+from os.path import exists
 
 import serial
 
@@ -72,9 +73,12 @@ def decode_signal(inp):
                 }
             }}
     """
-    fread = open("score_connect_data.json", "r")
-    file = json.load(fread)
-    fread.close()
+    if exists("score_connect_data.json"):
+      fread = open("score_connect_data.json", "r")
+      file = json.load(fread)
+      fread.close()
+    else:
+      file = {}
     fwrite = open("score_connect_data.json", "w")
     new = json.dumps(file | {"data": d, "input": inp}, indent=2)
     fwrite.write(new)
