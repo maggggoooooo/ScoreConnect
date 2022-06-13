@@ -14,6 +14,7 @@ ser = serial.Serial(
 
 
 def decode_signal(inp):
+    print(inp)
     split = [inp[i:i+2] for i in range(0, len(inp), 2)]
     d = {}
     if split[1] == "33":
