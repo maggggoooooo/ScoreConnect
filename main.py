@@ -74,7 +74,7 @@ def decode_signal(inp):
     f.close()
     f = open("score_connect_data.json", "w")
     new = json.dumps(file | {"data": d, "input": inp}
-                     f.write(new, indent=2))
+    f.write(new, indent=2))
     f.close()
     print(new)
 
