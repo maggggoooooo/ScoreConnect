@@ -69,13 +69,13 @@ def decode_signal(inp):
                         "12": str(int(split[45])), }
                 }
             }}
-    f = open("score_connect_data.json", "r")
-    file = json.load(f)
-    f.close()
-    f = open("score_connect_data.json", "w")
-    new = json.dumps(file | {"data": d, "input": inp}
-    f.write(new, indent=2))
-    f.close()
+    fread = open("score_connect_data.json", "r")
+    file = json.load(fread)
+    fread.close()
+    fwrite = open("score_connect_data.json", "w")
+    new = json.dumps(file | {"data": d, "input": inp}, indent=2)
+    fwrite.write(new)
+    fwrite.close()
     print(new)
 
 
