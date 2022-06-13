@@ -17,8 +17,9 @@ ser = serial.Serial(
 def decode_signal(inp):
     inp = str(inp)
     split = [inp[i:i+2] for i in range(0, len(inp), 2)]
+    print(split)
     d = {}
-
+    """
     if split[1] == "33":
         d = {
             "33": {
@@ -72,7 +73,7 @@ def decode_signal(inp):
                         "12": str(int(split[45])), }
                 }
             }}
-
+    """
     if exists("score_connect_data.json"):
       fread = open("score_connect_data.json", "r")
       file = json.load(fread)
