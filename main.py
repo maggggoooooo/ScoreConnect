@@ -20,7 +20,7 @@ def decode_signal(inp):
         print(split)
         d = {}
         if split[1] == "33":
-            d = {
+            d = d| {
                 "33": {
                     "type": "BASKETBALL_with_individual_fouls",
                     "ball_possession": "HOME" if split[3] == "31" else "GUEST" if split[3] == "32" else None,
@@ -72,6 +72,72 @@ def decode_signal(inp):
                             "12": str(int(split[45])), }
                     }
                 }}
+        if split[1] == "38":
+            d = d| {
+                "38":{
+                    "type": "Individual_points_-_HOME_BASKET/HAND/HOCKEY/FUTSAL",
+                    "timer_left": str(int(split[4])*10 + int(split[5])).zfill(2),
+                    "timer_right": str(int(split[6])*10 + int(split[7])).zfill(2),
+                    "horn": "ON" if split[19] == "31" else "OFF",
+                    "timer_start_stop": "START" if split[20] == "30" else "STOP",
+                    "clock_timer_display": "CLOCK" if split[20] == "31" else "TIMER",
+                    "individual_points_player": {
+                        "home": {
+                            "1": str(int(split[22])*10 + int(split[23])).zfill(2),
+                            "1": str(int(split[24])*10 + int(split[25])).zfill(2),
+                            "1": str(int(split[26])*10 + int(split[27])).zfill(2),
+                            "1": str(int(split[28])*10 + int(split[29])).zfill(2),
+                            "1": str(int(split[30])*10 + int(split[31])).zfill(2),
+                            "1": str(int(split[32])*10 + int(split[33])).zfill(2),
+                            "1": str(int(split[34])*10 + int(split[35])).zfill(2),
+                            "1": str(int(split[36])*10 + int(split[37])).zfill(2),
+                            "1": str(int(split[38])*10 + int(split[39])).zfill(2),
+                            "1": str(int(split[40])*10 + int(split[41])).zfill(2),
+                            "1": str(int(split[42])*10 + int(split[43])).zfill(2),
+                            "1": str(int(split[44])*10 + int(split[45])).zfill(2),
+                        },
+                    },
+                    "timer_24_pure": str(int(split[48][1])*10 + int(split[49][1])).zfill(2),
+                    "timer_24_dot": "ON" if split[49][0] == "4" else "OFF" if split[49][0] == "3" else None,
+                    "timer_24_formatted": str((int(split[48][1])*10 + int(split[49][1]))/10).zfill(2) if split[49][0] == "4" else str(int(split[48][1])*10 + int(split[49][1])).zfill(2) if split[49][0] == "3" else None,
+                    "horn_24": "ON" if split[50] == "31" else "OFF",
+                    "timer_24_start_stop": "START" if split[51] == "30" else "STOP",
+                    "display_24": "OFF" if split[52] == "24" else "ON",
+                }
+            }
+        if split[1] == "37":
+            d = d| {
+                "38":{
+                    "type": "Individual_points_-_GUEST_BASKET/HAND/HOCKEY/FUTSAL",
+                    "timer_left": str(int(split[4])*10 + int(split[5])).zfill(2),
+                    "timer_right": str(int(split[6])*10 + int(split[7])).zfill(2),
+                    "horn": "ON" if split[19] == "31" else "OFF",
+                    "timer_start_stop": "START" if split[20] == "30" else "STOP",
+                    "clock_timer_display": "CLOCK" if split[20] == "31" else "TIMER",
+                    "individual_points_player": {
+                        "guest": {
+                            "1": str(int(split[22])*10 + int(split[23])).zfill(2),
+                            "1": str(int(split[24])*10 + int(split[25])).zfill(2),
+                            "1": str(int(split[26])*10 + int(split[27])).zfill(2),
+                            "1": str(int(split[28])*10 + int(split[29])).zfill(2),
+                            "1": str(int(split[30])*10 + int(split[31])).zfill(2),
+                            "1": str(int(split[32])*10 + int(split[33])).zfill(2),
+                            "1": str(int(split[34])*10 + int(split[35])).zfill(2),
+                            "1": str(int(split[36])*10 + int(split[37])).zfill(2),
+                            "1": str(int(split[38])*10 + int(split[39])).zfill(2),
+                            "1": str(int(split[40])*10 + int(split[41])).zfill(2),
+                            "1": str(int(split[42])*10 + int(split[43])).zfill(2),
+                            "1": str(int(split[44])*10 + int(split[45])).zfill(2),
+                        },
+                    },
+                    "timer_24_pure": str(int(split[48][1])*10 + int(split[49][1])).zfill(2),
+                    "timer_24_dot": "ON" if split[49][0] == "4" else "OFF" if split[49][0] == "3" else None,
+                    "timer_24_formatted": str((int(split[48][1])*10 + int(split[49][1]))/10).zfill(2) if split[49][0] == "4" else str(int(split[48][1])*10 + int(split[49][1])).zfill(2) if split[49][0] == "3" else None,
+                    "horn_24": "ON" if split[50] == "31" else "OFF",
+                    "timer_24_start_stop": "START" if split[51] == "30" else "STOP",
+                    "display_24": "OFF" if split[52] == "24" else "ON",
+                }
+            }
         if exists("score_connect_data.json"):
             fread = open("score_connect_data.json", "r")
             file = json.load(fread)
