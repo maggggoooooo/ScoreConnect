@@ -20,7 +20,7 @@ def decode_signal(inp):
         print(split)
         d = {}
         if split[1] == "33":
-            d = d| {
+            d = d | {
                 "33": {
                     "type": "BASKETBALL_with_individual_fouls",
                     "ball_possession": "HOME" if split[3] == "31" else "GUEST" if split[3] == "32" else None,
@@ -73,8 +73,8 @@ def decode_signal(inp):
                     }
                 }}
         if split[1] == "38":
-            d = d| {
-                "38":{
+            d = d | {
+                "38": {
                     "type": "Individual_points_-_HOME_BASKET/HAND/HOCKEY/FUTSAL",
                     "timer_left": str(int(split[4])*10 + int(split[5])).zfill(2),
                     "timer_right": str(int(split[6])*10 + int(split[7])).zfill(2),
@@ -106,8 +106,8 @@ def decode_signal(inp):
                 }
             }
         if split[1] == "37":
-            d = d| {
-                "38":{
+            d = d | {
+                "38": {
                     "type": "Individual_points_-_GUEST_BASKET/HAND/HOCKEY/FUTSAL",
                     "timer_left": str(int(split[4])*10 + int(split[5])).zfill(2),
                     "timer_right": str(int(split[6])*10 + int(split[7])).zfill(2),
